@@ -1,0 +1,16 @@
+
+FROM python:3.6.9
+
+WORKDIR /src
+
+ENV FLASK_APP=./src/main.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt 
+
+COPY visitor.html .
+COPY reset.html .
+
+
+CMD ["flask", "run"]  

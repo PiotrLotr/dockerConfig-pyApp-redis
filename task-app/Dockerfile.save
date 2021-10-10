@@ -1,0 +1,13 @@
+FROM python:3.7
+
+WORKDIR /src
+
+COPY requirements.txt .
+RUN pip instCMD ["flask", "run"]all --no-cache-dir -r requirements.txt 
+
+COPY visitor.html .
+COPY reset.html .
+
+COPY src/ .
+
+CMD ["python", "./main.py"]  
