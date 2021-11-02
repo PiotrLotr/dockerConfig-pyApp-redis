@@ -1,21 +1,28 @@
 version: "3"
 
 services:
-  app:
+  app1:
     build: ./task-app/
-    container_name: "python_app" 
+    container_name: "app1" 
     environment:
       REDIS_HOST: "${REDIS_HOST}"
       REDIS_PORT: "${REDIS_PORT}"
     ports:
-      - "8080:8080"
+      - "81:80"
     depends_on:
       - redis
+  
   redis:
     image: redis:alpine
     volumes:
       - redis_data:/var/lib/redis
     ports:
       - "6379:6379"
+  
+  haproxy:
+    build: ./haproxy/
+    ports:
+      - "80:80"
+
 volumes:
   redis_data: {}  
