@@ -6,7 +6,6 @@ WORKDIR /app
 
 # installing pip
 RUN python -m ensurepip --upgrade
-RUN python get-pip.py
 
 # coppying and installing dependencies:
 COPY requirements.txt /app
@@ -18,3 +17,5 @@ COPY templates /app/templates
 
 #setting default command of containe to flask run
 CMD ["gunicorn", "-w 4", "-b", "0.0.0.0:8000", "main:app"] 
+
+
